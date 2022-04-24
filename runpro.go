@@ -1,36 +1,14 @@
 package main
 
 import (
-	"errors"
-	"flag"
 	"fmt"
 
+	"github.com/samverrall/run-pro/cmd"
 	"github.com/samverrall/run-pro/config"
 )
 
-const (
-	defaultRunProConfig = "./runpro-config.json"
-)
-
-type flags struct {
-	project string
-}
-
-func parseFlags() (*flags, error) {
-	project := flag.String("project", "", "The project to run.")
-	flag.Parse()
-
-	if project == nil {
-		return nil, errors.New("no project flag supplied")
-	}
-
-	return &flags{
-		project: *project,
-	}, nil
-}
-
 func main() {
-	c := config.New(defaultRunProConfig)
+	c := config.New(config.DefaultRunProConfig)
 
 	configOpts, err := c.Read()
 	switch {
@@ -40,11 +18,5 @@ func main() {
 		fmt.Errorf("runpro: got nil configOpts")
 	}
 
-	flags, err := parseFlags()
-	if err != nil {
-		fmt.Errorf("runpro: failed to parse flags: %v", err)
-	}
-
-	// TODO: Read flags and implement project runner, and other commmands.
-	fmt.Println(flags)
+	cmd.Execute()
 }

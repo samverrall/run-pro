@@ -8,3 +8,7 @@ type Project struct {
 }
 
 type ProjectsIn []Project
+
+func Lookup(name string) {
+
+}

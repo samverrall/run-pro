@@ -8,6 +8,10 @@ import (
 	"github.com/samverrall/run-pro/projects"
 )
 
+const (
+	DefaultRunProConfig = "./runpro-config.json"
+)
+
 type ConfigOptions struct {
 	Projects projects.ProjectsIn `json:"projects"`
 }
