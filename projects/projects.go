@@ -1,8 +1,10 @@
 package projects
 
 type Project struct {
-	Binary string
-	Args   []string
+	Name      string   `json:"name"`
+	Dir       string   `json:"dir"`
+	EntryFile string   `json:"entryFile"`
+	Args      []string `json:"args"`
 }
 
 type ProjectsIn []Project

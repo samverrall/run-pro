@@ -1,0 +1,7 @@
+[
+    {
+        "name": "john",
+        "dir": "",
+        "args": ["go", "run", "main.go"]
+    }
+]
