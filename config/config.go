@@ -3,6 +3,7 @@ package config
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"os"
 
 	"github.com/samverrall/run-pro/projects"
@@ -57,4 +58,11 @@ func (c *Config) Read() (*ConfigOptions, error) {
 	}
 
 	return &configOpts, nil
+}
+
+// TODO: Move all ConfigOptions types and methods to a configoptions.go file.
+func (c *ConfigOptions) AddProject(project projects.Project) (*ConfigOptions, error) {
+	// TODO: JSON encode config options, and write to the file.
+	fmt.Println("to add", project)
+	return nil, nil
 }
