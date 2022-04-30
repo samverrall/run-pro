@@ -1,7 +1,9 @@
-[
-    {
-        "name": "john",
-        "dir": "",
-        "args": ["go", "run", "main.go"]
-    }
-]
+{
+    "projects": [
+        {
+            "name": "Timetracker",
+            "entryFile": "C:\\Users\\Verrall\\projects\\focus-backend-go-main\\cmd\\main.go",
+            "args": ["go", "run", "main.go"]
+        }
+    ] 
+}

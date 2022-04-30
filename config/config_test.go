@@ -8,7 +8,7 @@ import (
 func Test_config_Read(t *testing.T) {
 	tests := []struct {
 		name    string
-		c       *config
+		c       *Config
 		want    *ConfigOptions
 		wantErr bool
 	}{

@@ -12,21 +12,35 @@ const (
 	DefaultRunProConfig = "./runpro-config.json"
 )
 
+var ConfigInst *ConfigOptions
+
+func Set(c *ConfigOptions) {
+	ConfigInst = c
+}
+
+func Get() (*ConfigOptions, error) {
+	if ConfigInst == nil {
+		return nil, errors.New("cannot get config instance as it is nil")
+	}
+	return ConfigInst, nil
+}
+
 type ConfigOptions struct {
 	Projects projects.ProjectsIn `json:"projects"`
 }
 
-type config struct {
-	file string
+type Config struct {
+	file     string
+	Projects projects.ProjectsIn `json:"projects"`
 }
 
-func New(file string) *config {
-	return &config{
+func New(file string) *Config {
+	return &Config{
 		file: file,
 	}
 }
 
-func (c *config) Read() (*ConfigOptions, error) {
+func (c *Config) Read() (*ConfigOptions, error) {
 	bytes, err := os.ReadFile(c.file)
 	if err != nil {
 		return nil, errors.New("failed to read config file")
@@ -39,7 +53,7 @@ func (c *config) Read() (*ConfigOptions, error) {
 	var configOpts ConfigOptions
 	jErr := json.Unmarshal(bytes, &configOpts)
 	if jErr != nil {
-		return nil, errors.New("config file not in proper json formats")
+		return nil, errors.New("config file not in proper json format")
 	}
 
 	return &configOpts, nil

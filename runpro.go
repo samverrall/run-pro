@@ -18,5 +18,9 @@ func main() {
 		fmt.Errorf("runpro: got nil configOpts")
 	}
 
+	// Set the config global instance
+	config.Set(configOpts)
+
+	// Run cobra
 	cmd.Execute()
 }
