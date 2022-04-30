@@ -28,7 +28,7 @@ var listCmd = &cobra.Command{
 		}
 
 		for _, p := range c.Projects {
-			fmt.Printf("Name: %s, Entry: %s", p.Name, p.EntryFile)
+			fmt.Printf("Name: %s, Entry: %s\n", p.Name, p.EntryFile)
 		}
 	},
 }

@@ -1,9 +1,16 @@
 {
     "projects": [
         {
-            "name": "success",
-            "entryFile": "success",
-            "args": ["1", "2", "3"]
+            "name": "Timetracker",
+            "dir": "C:\\Users\\Verrall\\projects\\focus-backend-go-main\\cmd",
+            "entryFile": "main.go",
+            "args": ["go", "run", "main.go"]
+        },
+        {
+            "name": "test",
+            "dir": "C:\\Users\\Verrall\\projects\\test",
+            "entryFile": "main.go",
+            "args": ["go", "run", "main.go"]
         }
     ] 
 }

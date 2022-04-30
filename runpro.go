@@ -13,9 +13,11 @@ func main() {
 	configOpts, err := c.Read()
 	switch {
 	case err != nil:
-		fmt.Errorf("runpro: failed to read config: %v", err)
+		fmt.Println("runpro: failed to read config:", err)
+		return
 	case configOpts == nil:
-		fmt.Errorf("runpro: got nil configOpts")
+		fmt.Println("runpro: got nil configOpts")
+		return
 	}
 
 	// Set the config global instance
