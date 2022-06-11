@@ -19,7 +19,7 @@ List the projects in your config file.
 
 ```
 $ run-pro list
-
+```
 Add a new project
 
 ```
