@@ -18,39 +18,35 @@ var runCmd = &cobra.Command{
 	Use:   "run",
 	Short: "Attempts to run a project",
 	Long:  "Attempts to run a project from the projects config file, using the project name.",
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		// Read the config to get the location of the projects JSON file.
 		c, err := config.Get()
 		if err != nil {
-			fmt.Printf("run: %v\n", err)
-			return
+			return fmt.Errorf("run: %v", err)
 		}
 
 		if len(c.Projects) == 0 {
-			fmt.Println("You currently have 0 projects in your config.")
-			return
+			return fmt.Errorf("no projects exist in your config")
 		}
 
 		if len(args) == 0 {
-			fmt.Println("You must supply a project name.")
-			return
+			return fmt.Errorf("no project name supplied")
 		}
 
 		project, err := c.Projects.LookupByName(args[0])
 		switch {
 		case err != nil:
-			fmt.Println(err)
-			return
+			return fmt.Errorf("failed to lookup project: %v", err)
 		case project == nil:
-			fmt.Println("run: got nil project")
-			return
+			return fmt.Errorf("run: got nil project")
 		default:
 			rErr := maybeRunProject(project)
 			if rErr != nil {
-				fmt.Printf("Failed to run project, error: %v\n", rErr)
-				return
+				return fmt.Errorf("failed to run project: %v", rErr)
 			}
 		}
+
+		return nil
 	},
 }
 
