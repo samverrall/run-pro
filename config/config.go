@@ -96,7 +96,7 @@ func (c *Config) OverwriteFile(jsonBytes []byte) error {
 		return err
 	}
 	defer file.Close()
-	fmt.Println(string(jsonBytes))
+
 	if _, err := file.WriteString(string(jsonBytes)); err != nil {
 		return err
 	}
