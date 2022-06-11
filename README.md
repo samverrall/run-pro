@@ -19,3 +19,9 @@ List the projects in your config file.
 
 ```
 $ run-pro list
+
+Add a new project
+
+```
+$ run-pro add --name=project-name --dir=project-dir --entry-file=main.go --args=go,run,main.go
+```
