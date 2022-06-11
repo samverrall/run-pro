@@ -10,18 +10,12 @@ import (
 func main() {
 	c := config.New(config.DefaultRunProConfig)
 
-	configOpts, err := c.Read()
-	switch {
-	case err != nil:
+	if _, err := c.SetProjects(); err != nil {
 		fmt.Println("runpro: failed to read config:", err)
-		return
-	case configOpts == nil:
-		fmt.Println("runpro: got nil configOpts")
 		return
 	}
 
-	// Set the config global instance
-	config.Set(configOpts)
+	config.Set(c)
 
 	// Run cobra
 	cmd.Execute()

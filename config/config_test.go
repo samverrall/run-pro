@@ -16,13 +16,14 @@ func Test_config_Read(t *testing.T) {
 	tests := []struct {
 		name    string
 		c       *Config
-		want    *ConfigOptions
+		want    *Config
 		wantErr bool
 	}{
 		{
 			name: "Successful config read",
 			c:    New(successfulConfigFile),
-			want: &ConfigOptions{
+			want: &Config{
+				file: successfulConfigFile,
 				Projects: projects.ProjectsIn{
 					{
 						Name:      "success",
@@ -40,7 +41,7 @@ func Test_config_Read(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := tt.c.Read()
+			got, err := tt.c.SetProjects()
 			if (err != nil) != tt.wantErr {
 				t.Errorf("config.Read() error = %v, wantErr %v", err, tt.wantErr)
 				return
